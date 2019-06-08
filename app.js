@@ -28,7 +28,7 @@ d3.csv("data.csv")
     // Parse data and cast as numbers
     healthData.forEach(function(data) {
       data.poverty = +data.poverty;
-      data.healthcareLow = +data.healthcareLow;
+      data.healthcare = +data.healthcare;
     });
 
     // Create scale functions
@@ -37,7 +37,7 @@ d3.csv("data.csv")
       .range([d3.min(healthData, d => d.poverty)/( d3.max(healthData, d => d.poverty)-d3.min(healthData, d => d.poverty)), width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d.healthcareLow), d3.max(healthData, d => d.healthcareLow)])
+      .domain([d3.min(healthData, d => d.healthcare), d3.max(healthData, d => d.healthcare)])
       .range([height, 0]);
 
     // Create axis functions
@@ -58,7 +58,7 @@ d3.csv("data.csv")
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
-    .attr("cy", d => yLinearScale(d.healthcareLow))
+    .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", "15")
     .attr("fill", "blue")
     .attr("opacity", "0.5");
@@ -70,8 +70,8 @@ d3.csv("data.csv")
     .append("text")
     .text(d => d.abbr)
     .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.healthcareLow));
-
+    .attr("y", d => yLinearScale(d.healthcare));
+    //.attr("fill", "white");
 
 
 
