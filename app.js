@@ -81,7 +81,7 @@ d3.csv("data.csv")
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.abbr}`);
+        return (`${d.state}<br>State Abbreviation: ${d.abbr}`);
       });
 
     // Create tooltip in the chart
