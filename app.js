@@ -59,19 +59,19 @@ d3.csv("data.csv")
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", "11")
+    .attr("r", "14")
     .attr("fill", "lightblue")
     .attr("opacity", "1.5");
 
     // Place state abbreviations inside circles
-    chartGroup.selectAll("text")
+    chartGroup.selectAll(null)
     .data(healthData)
     .enter()
     .append("text")
     .text(d => d.abbr)
-    .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.healthcare));
-    //.attr("fill", "white");
+    .attr("x", d => xLinearScale(d.poverty)-9)
+    .attr("y", d => yLinearScale(d.healthcare)+5)
+    .attr("fill", "white");
 
 
 
