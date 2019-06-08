@@ -33,11 +33,11 @@ d3.csv("data.csv")
 
     // Create scale functions
     var xLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthData, d => d.poverty)])
-      .range([0, width]);
+      .domain([d3.min(healthData, d => d.poverty), d3.max(healthData, d => d.poverty)])
+      .range([d3.min(healthData, d => d.poverty)/( d3.max(healthData, d => d.poverty)-d3.min(healthData, d => d.poverty)), width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthData, d => d.healthcareLow)])
+      .domain([d3.min(healthData, d => d.healthcareLow), d3.max(healthData, d => d.healthcareLow)])
       .range([height, 0]);
 
     // Create axis functions
@@ -61,7 +61,7 @@ d3.csv("data.csv")
     .attr("cy", d => yLinearScale(d.healthcareLow))
     .attr("r", "15")
     .attr("fill", "blue")
-    .attr("opacity", ".5");
+    .attr("opacity", "0.5");
 
     // Place state abbreviations inside circles
     chartGroup.selectAll("text")
@@ -71,6 +71,7 @@ d3.csv("data.csv")
     .text(d => d.abbr)
     .attr("x", d => xLinearScale(d.poverty))
     .attr("y", d => yLinearScale(d.healthcareLow));
+
 
 
 
