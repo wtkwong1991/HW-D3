@@ -33,11 +33,11 @@ d3.csv("data.csv")
 
     // Create scale functions
     var xLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d.poverty), d3.max(healthData, d => d.poverty)])
+      .domain([d3.min(healthData, d => d.poverty), d3.max(healthData, d => d.poverty)+1])
       .range([d3.min(healthData, d => d.poverty)/( d3.max(healthData, d => d.poverty)-d3.min(healthData, d => d.poverty)), width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d.healthcare), d3.max(healthData, d => d.healthcare)])
+      .domain([d3.min(healthData, d => d.healthcare), d3.max(healthData, d => d.healthcare)+2])
       .range([height, 0]);
 
     // Create axis functions
@@ -59,9 +59,9 @@ d3.csv("data.csv")
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", "15")
-    .attr("fill", "blue")
-    .attr("opacity", "0.5");
+    .attr("r", "11")
+    .attr("fill", "lightblue")
+    .attr("opacity", "1.5");
 
     // Place state abbreviations inside circles
     chartGroup.selectAll("text")
@@ -81,7 +81,7 @@ d3.csv("data.csv")
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.state}<br>State Abbreviation: ${d.abbr}`);
+        return (`${d.abbr}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
       });
 
     // Create tooltip in the chart
